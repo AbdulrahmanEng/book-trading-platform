@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .w3-container
+    div(class="book")
+      h1(class="book__title") #{book.title}
+      img(class="book__thumbnail" src=book.thumbnail)
+      div(class="book__authors") Authors: #{book.authors.join(', ')}
+      div(class="book__published") Publishing Date: #{book.publishedDate}
+      div(class="book__isbn") ISBN: #{book.isbn}
+      div(class="book__owner") Current Owner: #{book.currentOwner}
+      if book.currentOwner !== user
+        form(action="/books/"+book.isbn+"/request" method="POST")
+          button(type="submit") Request Book

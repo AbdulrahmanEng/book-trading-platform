@@ -1,0 +1,41 @@
+.w3-container a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.avatar {
+    width: 10%;
+}
+
+form {
+    margin: 1rem 0;
+}
+
+.books {
+    list-style: none;
+}
+.my-books__requests{
+    display: inline-table;
+}
+.requests-made{
+    float: left;
+}
+.requests-received {
+    float: right;
+}
+.requests-made,
+.requests-received {
+    width: 50%;
+}
+.books__book {
+    display: inline-block;
+    margin: 1rem;
+}
+
+.book {
+    margin: 1rem;
+}
+
+.request__email,.request__title,.request__city,.request__state {
+    margin: .5rem;
+}

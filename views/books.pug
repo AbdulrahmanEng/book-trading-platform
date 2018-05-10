@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .w3-container
+    div
+      ul(class="books")
+        each book in books
+          li(class="books__book")
+            a(href='/books/'+book.isbn)
+              img(class="book__thumbnail" src=book.thumbnail)

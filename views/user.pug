@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  br
+  .w3-container
+    .w3-card-4.w3-center(style="padding: 15px;")
+      img(class="avatar" src=user.picture)
+      h1 Profile
+      p Email: #{user.email}
+      p City: #{user.city}
+      p State: #{user.state}
+      h2 Location
+      p Enter you city and state:
+      form(method="post" action="/user/update")
+        div
+          input(type="text" name="city" placeholder="City" required)
+        div
+          input(type="text" name="state" placeholder="State"  required)
+        button(type="submit") Update Details
+      h2 Add a Book
+      form(method="post" action="/books")
+        div
+          input(type="text" name="isbn" placeholder="ISBN" required)
+        button(type="submit") Add Book
+      div(class="my-books")
+        h2 My Books
+        ul(class="books")
+          each book in user.books
+            li(class="books__book")
+              a(href='/books/'+book.isbn)
+                img(class="book__thumbnail" src=book.thumbnail)
+                form(action="/books/"+book.isbn+"/delete" method="POST")
+                  button(type="submit") Delete Book
+        div(class="my-books__requests")
+          div(class="requests-made")
+            strong Trade Requests Sent
+            ol(class="requests")
+              each request in user.requestsSent
+                li(class="request")
+                  div(class="request__title") #{request.title}
+          div(class="requests-received")
+            strong Unapproved Trade Requests
+            ol(class="requests")
+              each request in user.requestsReceived
+                li(class="request") 
+                  div(class="request__title") #{request.title}
+                  div(class="request__city") #{request.city}
+                  div(class="request__state") #{request.state}
+                  form(action="/books/"+request.isbn+"/confirm" method="POST")
+                    input(type="text" name="email" value=request.email readonly)
+                    button(type="submit") Confirm Trade
